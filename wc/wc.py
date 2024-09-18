@@ -72,15 +72,15 @@ class WCParser:
         if not self._filePath.exists():
             raise FileNotFoundError
 
-    def count_lines(self) -> int:
+    def count_lines(self) -> str:
         with open(self._filePath, encoding="utf-8") as f:
             return "Lines: " + str(sum(1 for _ in f)) + " " + str(self._filePath)
 
-    def count_bytes(self) -> int:
+    def count_bytes(self) -> str:
         stats = os.stat(self._filePath)
         return "Bytes: " + str(stats.st_size) + " " + str(self._filePath)
 
-    def count_chars(self) -> int:
+    def count_chars(self) -> str:
         with open(self._filePath, encoding="utf-8") as f:
             return (
                 "Chars: "
@@ -90,13 +90,13 @@ class WCParser:
             )
             # NOTE: bad!
 
-    def count_words(self) -> int:
+    def count_words(self) -> str:
         with open(self._filePath, encoding="utf-8") as f:
             text = f.read()
             res = re.findall(r"\w+", text)
             return "Words: " + str(len(res)) + " " + str(self._filePath)
 
-    def max_line_length(self) -> int:
+    def max_line_length(self) -> str:
         with open(self._filePath, encoding="utf-8") as f:
             return (
                 "MLL: " + str(max(len(line) for line in f)) + " " + str(self._filePath)
