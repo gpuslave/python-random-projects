@@ -79,21 +79,29 @@ class WC:
 
     def count_bytes(self) -> int:
         stats = os.stat(self._filePath)
-        return stats.st_size
+        return "Bytes: " + str(stats.st_size) + " " + str(self._filePath)
 
     def count_chars(self) -> int:
         with open(self._filePath, encoding="utf-8") as f:
-            return sum(len(line) for line in f)  # NOTE: bad!
+            return (
+                "Chars: "
+                + str(sum(len(line) for line in f))
+                + " "
+                + str(self._filePath)
+            )
+            # NOTE: bad!
 
     def count_words(self) -> int:
         with open(self._filePath, encoding="utf-8") as f:
             text = f.read()
             res = re.findall(r"\w+", text)
-            return len(res)
+            return "Words: " + str(len(res)) + " " + str(self._filePath)
 
     def max_line_length(self) -> int:
         with open(self._filePath, encoding="utf-8") as f:
-            return max(len(line) for line in f)
+            return (
+                "MLL: " + str(max(len(line) for line in f)) + " " + str(self._filePath)
+            )
 
     def parser_output(self):
         """Use only with parser (filePath = None)"""
