@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 from pathlib import Path
-from typing import Optional
+from typing import Optional, Union
 import argparse
 import os
 import re
@@ -10,7 +10,7 @@ __version__ = "0.0.1"
 
 
 class WC:
-    def __init__(self, filePath: Optional[str] = None):
+    def __init__(self, filePath: Union[str, Path, None] = None):
         if not filePath:
             self._parser = argparse.ArgumentParser(
                 prog="wc",
